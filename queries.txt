@@ -20,6 +20,12 @@ SELECT
 
 10) SELECT DISTINCT videogames.id FROM `reviews` JOIN `videogames` ON reviews.videogame_id = videogames.id WHERE reviews.rating = "5";
 
+BONUS
+
+11) SELECT COUNT(id), AVG(rating) FROM `reviews` WHERE videogame_id = 412;
+
+12) SELECT COUNT(id) FROM `videogames` WHERE software_house_id = 1 AND YEAR(release_date) = 2018;
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 GROUP BY
@@ -62,3 +68,7 @@ JOIN tournaments ON tournament_videogame.tournament_id = tournaments.id
 WHERE awards.name="Gioco dell'anno" AND award_videogame.year = 2018;
 
 9) SELECT DISTINCT players.nickname FROM `awards` JOIN award_videogame ON award_videogame.award_id = awards.id JOIN videogames ON award_videogame.videogame_id = videogames.id JOIN tournament_videogame ON tournament_videogame.videogame_id = videogames.id JOIN tournaments ON tournament_videogame.tournament_id = tournaments.id JOIN player_tournament ON tournaments.id = player_tournament.tournament_id JOIN players ON player_tournament.player_id = players.id WHERE awards.name="Gioco più atteso" AND award_videogame.year = 2018 AND tournaments.year = 2019;
+
+BONUS 
+
+10) SELECT software_houses.*, videogames.name, MIN(videogames.release_date) as FirstGame FROM `software_houses` JOIN videogames ON videogames.software_house_id = software_houses.id GROUP BY software_houses.id, videogames.name ORDER BY FirstGame LIMIT 1;
